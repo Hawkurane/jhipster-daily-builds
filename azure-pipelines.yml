@@ -26,8 +26,6 @@ jobs:
   steps:
   - bash: echo 'Hello World!'
     displayName: 'Hello World!'
-  - bash: ls -al
-    displayName: 'Scouting folder'
   - task: NodeTool@0
     inputs:
       versionSpec: '10.15.3'
@@ -46,3 +44,4 @@ jobs:
     displayName: 'Update Yarn'
   - bash: yarn -v
     displayName: 'Display yarn version'
+    
