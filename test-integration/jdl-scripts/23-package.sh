@@ -63,5 +63,9 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
                 exit 1
             fi
         fi
+
+        # if [ "$JHI_PKG_DOCKER" == 1 ]; then
+        #     if [ -f "mvnw" ]; then
+        #         ./mvnw -Pprod verify jib:dockerBuild
     fi
 done
