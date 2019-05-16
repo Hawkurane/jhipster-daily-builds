@@ -24,7 +24,7 @@ fi
 # jhipster-dependencies.version in generated pom.xml or gradle.properties
 cd "$JHI_FOLDER_APP"
 for local_folder in $(ls "$JHI_FOLDER_APP"); do
-    if [ -d "$local_folder"];
+    if [ -d "$local_folder" ];
     then
         cd $local_folder
         if [[ -a mvnw ]]; then
