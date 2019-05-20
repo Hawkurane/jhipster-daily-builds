@@ -24,9 +24,9 @@ fi
 # jhipster-dependencies.version in generated pom.xml or gradle.properties
 cd "$JHI_FOLDER_APP"
 for local_folder in $(ls "$JHI_FOLDER_APP"); do
-    if [ -d "$local_folder" ];
+    if [ -d "$JHI_FOLDER_APP"/"$local_folder" ];
     then
-        cd $local_folder
+        cd "$JHI_FOLDER_APP"/"$local_folder"
         if [[ -a mvnw ]]; then
             sed -e 's/<jhipster-dependencies.version>.*<\/jhipster-dependencies.version>/<jhipster-dependencies.version>'$JHI_VERSION'<\/jhipster-dependencies.version>/1;' pom.xml > pom.xml.sed
             mv -f pom.xml.sed pom.xml

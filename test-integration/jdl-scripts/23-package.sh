@@ -14,10 +14,9 @@ fi
 
 cd "$JHI_FOLDER_APP"
 for local_folder in $(ls "$JHI_FOLDER_APP"); do
-    if [ -d "$local_folder" ];
+    if [ -d "$JHI_FOLDER_APP"/"$local_folder" ];
     then
-        echo "$local_folder"
-        cd $local_folder
+        cd "$JHI_FOLDER_APP"/"$local_folder"
         #-------------------------------------------------------------------------------
         # Decrease Angular timeout for Protractor tests
         #-------------------------------------------------------------------------------

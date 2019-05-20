@@ -8,9 +8,9 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 cd "$JHI_FOLDER_APP"
 for local_folder in $(ls "."); do
-    if [ -d "$local_folder" ];
+    if [ -d "$JHI_FOLDER_APP"/"$local_folder" ];
     then
-        cd $local_folder
+        cd "$JHI_FOLDER_APP"/"$local_folder"
         if [ -a src/main/docker/jhipster-registry.yml ]; then
             docker-compose -f src/main/docker/jhipster-registry.yml up -d
         fi
