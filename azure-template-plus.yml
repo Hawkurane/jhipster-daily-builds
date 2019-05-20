@@ -79,8 +79,8 @@ steps:
 #----------------------------------------------------------------------
 # Launch tests
 #----------------------------------------------------------------------
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/20-docker-compose.sh
-  displayName: 'TESTS: Start docker-compose containers'
+# - bash: $HOME/work/1/s/test-integration/jdl-scripts/20-docker-compose.sh
+#   displayName: 'TESTS: Start docker-compose containers'
 # - bash: $HOME/work/1/s/test-integration/jdl-scripts/21-tests-backend.sh
 #   displayName: 'TESTS: backend'
 # - bash: $(JHI_SCRIPTS)/22-tests-frontend.sh
