@@ -16,6 +16,7 @@ cd "$JHI_FOLDER_APP"
 for local_folder in $(ls "$JHI_FOLDER_APP"); do
     if [ -d "$local_folder" ];
     then
+        echo "$local_folder"
         cd $local_folder
         #-------------------------------------------------------------------------------
         # Decrease Angular timeout for Protractor tests
@@ -80,7 +81,8 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
                 echo "*** error when building docker images"
                 exit 1
             fi
-            docker images
+
         # fi
     fi
 done
+docker images
