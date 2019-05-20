@@ -41,6 +41,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
         else
             echo "*** no mvnw or gradlew"
             # exit 0 - No actions to be done, go next
+            continue
         fi
         if [ $? -ne 0 ]; then
             echo "*** error when packaging"
@@ -60,6 +61,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
             else
                 echo "*** no mvnw or gradlew"
                 # exit 0 - No actions to be done, go next
+                continue
             fi
             if [ $? -ne 0 ]; then
                 echo "*** error when packaging"
@@ -78,6 +80,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
             else
                 echo "*** no mvnw or gradlew"
                 # exit 0 - No actions to be done, go next
+                continue
             fi
             if [ $? -ne 0 ]; then
                 echo "*** error when building docker images"
