@@ -18,7 +18,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
     if [ -d "$JHI_FOLDER_APP"/"$local_folder" ];
     then
         cd "$JHI_FOLDER_APP"/"$local_folder"
-        echo "went into \"$JHI_FOLDER_APP\"/\"$local_folder\""
+        echo "went into $JHI_FOLDER_APP/$local_folder"
         ls -ll
         #-------------------------------------------------------------------------------
         # Decrease Angular timeout for Protractor tests
@@ -77,7 +77,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
                 ./gradlew bootJar -Pprod jibDockerBuild
             else
                 echo "*** no mvnw or gradlew"
-                exit 0
+                # exit 0
             fi
             if [ $? -ne 0 ]; then
                 echo "*** error when building docker images"
