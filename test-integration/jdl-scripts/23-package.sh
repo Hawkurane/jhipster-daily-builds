@@ -40,7 +40,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
             mv build/libs/*SNAPSHOT.jar app.jar
         else
             echo "*** no mvnw or gradlew"
-            exit 0
+            # exit 0 - No actions to be done, go next
         fi
         if [ $? -ne 0 ]; then
             echo "*** error when packaging"
@@ -59,7 +59,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
                 mv build/libs/*SNAPSHOT.war app.war
             else
                 echo "*** no mvnw or gradlew"
-                exit 0
+                # exit 0 - No actions to be done, go next
             fi
             if [ $? -ne 0 ]; then
                 echo "*** error when packaging"
@@ -77,7 +77,7 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
                 ./gradlew bootJar -Pprod jibDockerBuild
             else
                 echo "*** no mvnw or gradlew"
-                # exit 0
+                # exit 0 - No actions to be done, go next
             fi
             if [ $? -ne 0 ]; then
                 echo "*** error when building docker images"
