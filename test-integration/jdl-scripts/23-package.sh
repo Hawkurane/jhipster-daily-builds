@@ -13,10 +13,13 @@ if [[ "$JHI_APP" == *"uaa"* ]]; then
 fi
 
 cd "$JHI_FOLDER_APP"
+ls -ll
 for local_folder in $(ls "$JHI_FOLDER_APP"); do
     if [ -d "$JHI_FOLDER_APP"/"$local_folder" ];
     then
         cd "$JHI_FOLDER_APP"/"$local_folder"
+        echo "went into \"$JHI_FOLDER_APP\"/\"$local_folder\""
+        ls -ll
         #-------------------------------------------------------------------------------
         # Decrease Angular timeout for Protractor tests
         #-------------------------------------------------------------------------------
