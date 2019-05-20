@@ -87,5 +87,7 @@ steps:
 #   displayName: 'TESTS: frontend'
 - bash: $HOME/work/1/s/test-integration/jdl-scripts/23-package.sh
   displayName: 'TESTS: packaging'
+- bash: $HOME/work/1/s/test-integration/jdl-scripts/24-deploy-to-docker-compose.sh
+  displayName: 'TESTS: Deploying with docker-compose files'
 # - bash: $(JHI_SCRIPTS)/24-tests-e2e.sh
 #   displayName: 'TESTS: End-to-End'

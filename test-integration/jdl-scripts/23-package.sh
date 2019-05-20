@@ -64,8 +64,23 @@ for local_folder in $(ls "$JHI_FOLDER_APP"); do
             fi
         fi
 
+        #-------------------------------------------------------------------------------
+        # Package the application as Docker image
+        #-------------------------------------------------------------------------------
         # if [ "$JHI_PKG_DOCKER" == 1 ]; then
-        #     if [ -f "mvnw" ]; then
-        #         ./mvnw -Pprod verify jib:dockerBuild
+            if [ -f "mvnw" ]; then
+                ./mvnw -Pprod verify jib:dockerBuild
+            elif [ -f "gradlew" ]; then
+                ./gradlew bootJar -Pprod jibDockerBuild
+            else
+                echo "*** no mvnw or gradlew"
+                exit 0
+            fi
+            if [ $? -ne 0 ]; then
+                echo "*** error when building docker images"
+                exit 1
+            fi
+            docker images
+        # fi
     fi
 done
