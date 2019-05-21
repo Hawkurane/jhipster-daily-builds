@@ -63,9 +63,7 @@ steps:
 #----------------------------------------------------------------------
 - bash: test-integration/jdl-scripts/10-install-jhipster-daily-builds.sh
   displayName: 'GENERATION: install JHipster'
-# - bash: $HOME/work/1/s/test-integration/jdl-scripts/12-generate-project.sh
-#   displayName: 'GENERATION: project'
-- bash: $("JHI_LOCAL_SCRIPTS")/12-generate-project.sh
+- bash: $HOME/work/1/s/test-integration/jdl-scripts/12-generate-project.sh
   displayName: 'GENERATION: project'
 - bash: $(JHI_LOCAL_SCRIPTS)/13-replace-version-generated-project.sh
   displayName: 'GENERATION: replace version in generated project'
