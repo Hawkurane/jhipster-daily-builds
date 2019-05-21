@@ -63,11 +63,13 @@ steps:
 #----------------------------------------------------------------------
 - bash: test-integration/jdl-scripts/10-install-jhipster-daily-builds.sh
   displayName: 'GENERATION: install JHipster'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/12-generate-project.sh
-  displayName: 'GENERATION: project'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/13-replace-version-generated-project.sh
+# - bash: $HOME/work/1/s/test-integration/jdl-scripts/12-generate-project.sh
+#   displayName: 'GENERATION: project'
+- bash: $(JHI_LOCAL_SCRIPTS)/12-generate-project.sh
+  displayName: 'GENERATION: install JHipster'
+- bash: $(JHI_LOCAL_SCRIPTS)/13-replace-version-generated-project.sh
   displayName: 'GENERATION: replace version in generated project'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/14-jhipster-info.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/14-jhipster-info.sh
   displayName: 'GENERATION: jhipster info'
 
 #----------------------------------------------------------------------
@@ -79,15 +81,15 @@ steps:
 #----------------------------------------------------------------------
 # Launch tests
 #----------------------------------------------------------------------
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/20-docker-compose.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/20-docker-compose.sh
   displayName: 'TESTS: Start docker-compose containers'
 # - bash: $HOME/work/1/s/test-integration/jdl-scripts/21-tests-backend.sh
 #   displayName: 'TESTS: backend'
 # - bash: $(JHI_SCRIPTS)/22-tests-frontend.sh
 #   displayName: 'TESTS: frontend'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/23-package.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/23-package.sh
   displayName: 'TESTS: packaging'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/24-deploy-with-docker-compose.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
   displayName: 'TESTS: Deploying with docker-compose files'
-- bash: $HOME/work/1/s/test-integration/jdl-scripts/25-tests-e2e-docker-compose.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
   displayName: 'TESTS: End-to-End (Docker-Compose)'
