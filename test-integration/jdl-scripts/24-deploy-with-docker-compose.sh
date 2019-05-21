@@ -3,8 +3,6 @@
 set -e
 source $(dirname $0)/00-init-env.sh
 
-# To prevent any taken ports from script n°20, we stop all containers
-docker stop $(docker ps -a -q)
 
 #-------------------------------------------------------------------------------
 # Start docker container

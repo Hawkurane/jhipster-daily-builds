@@ -79,8 +79,6 @@ steps:
 #----------------------------------------------------------------------
 # Launch tests
 #----------------------------------------------------------------------
-- bash: $(JHI_LOCAL_SCRIPTS)/20-docker-compose.sh
-  displayName: 'TESTS: Start docker-compose containers'
 - bash: $(JHI_LOCAL_SCRIPTS)/23-package.sh
   displayName: 'TESTS: packaging'
 - bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
