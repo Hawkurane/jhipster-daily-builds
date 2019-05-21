@@ -26,9 +26,7 @@ JHI_INTEG="$JHI_HOME"/test-integration
 JHI_SAMPLES="$HOME"/work/1/s/test-integration/jdl-samples
 
 # folder for scripts
-JHI_SCRIPTS="$JHI_INTEG"/scripts
-JHI_LOCAL_SCRIPTS="$HOME"/work/1/s/test-integration/jdl-scripts
-
+JHI_SCRIPTS="$JHI_INTEG"/jdl-scripts
 # folder for app
 JHI_FOLDER_APP="$HOME"/app
 

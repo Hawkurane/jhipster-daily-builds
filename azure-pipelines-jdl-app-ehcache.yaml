@@ -37,7 +37,7 @@ jobs:
     SPRING_JPA_SHOW_SQL: false
     JHI_DISABLE_WEBPACK_LOGS: true
     JHI_E2E_HEADLESS: true
-    JHI_LOCAL_SCRIPTS: $HOME/work/1/s/test-integration/jdl-scripts
+    JHI_LOCAL_SCRIPTS: $(Build.SourcesDirectory)/test-integration/jdl-scripts
 
   strategy:
     matrix:
