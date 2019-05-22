@@ -12,4 +12,5 @@ docker rm $(docker ps -a -q)
 #-------------------------------------------------------------------------------
 # Starting local cluster
 #-------------------------------------------------------------------------------
+export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 kind create cluster
