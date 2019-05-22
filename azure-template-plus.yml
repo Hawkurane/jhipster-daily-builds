@@ -94,5 +94,5 @@ steps:
   displayName: 'TOOLS: install kind'
 - bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
   displayName: 'TOOLS: start up kind cluster'
-- bash: $(JHI_LOCAL_SCRIPTS)28-deploy-with-kubernetes.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/28-deploy-with-kubernetes.sh
   displayName: 'TESTS: Deploying with kubernetes cluster'
