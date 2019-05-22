@@ -59,6 +59,13 @@ steps:
 - bash: $(JHI_LOCAL_SCRIPTS)/04-git-config.sh
   displayName: 'TOOLS: configure git'
 #----------------------------------------------------------------------
+# Install Kind
+#----------------------------------------------------------------------
+- bash: $(JHI_LOCAL_SCRIPTS)/26-install-kind.sh
+  displayName: 'TOOLS: install kind'
+- bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
+  displayName: 'TOOLS: start up kind cluster'
+#----------------------------------------------------------------------
 # Install JHipster and generate project+entities
 #----------------------------------------------------------------------
 - bash: $(JHI_LOCAL_SCRIPTS)/10-install-jhipster-daily-builds.sh
