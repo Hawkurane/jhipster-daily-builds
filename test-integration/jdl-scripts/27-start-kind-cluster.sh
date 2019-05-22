@@ -12,5 +12,6 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 # Starting local cluster
 #-------------------------------------------------------------------------------
-export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 kind create cluster
+export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
+kubectl cluster-info
