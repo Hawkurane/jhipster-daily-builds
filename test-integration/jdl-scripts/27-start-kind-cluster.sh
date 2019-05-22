@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-source $(dirname 00)/00-init-env.sh
+source $(dirname $0)/00-init-env.sh
 
 #-------------------------------------------------------------------------------
 # Stopping docker containers

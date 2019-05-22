@@ -61,13 +61,8 @@ steps:
 #----------------------------------------------------------------------
 # Install Kind
 #----------------------------------------------------------------------
-- script: |
-    curl -Lo ./kind-linux-amd64 https://github.com/kubernetes-sigs/kind/releases/download/v0.3.0/kind-linux-amd64
-    chmod +x ./kind-linux-amd64
-    sudo mv ./kind-linux-amd64 /usr/local/bin/kind
-    kind --version
+- bash: $(JHI_LOCAL_SCRIPTS)/26-install-kind.sh
   displayName: 'TOOLS: install kind'
-
 - bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
   displayName: 'TOOLS: start up kind cluster'
 #----------------------------------------------------------------------
