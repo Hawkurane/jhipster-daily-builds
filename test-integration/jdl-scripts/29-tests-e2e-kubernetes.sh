@@ -6,10 +6,10 @@ source $(dirname $0)/00-init-env.sh
 # Connecting to cluster
 #-------------------------------------------------------------------------------
 export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-ip=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
-port=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)`
-httpUrl="http://$(ip):$(port)"
-echo "HTTP URL = ($httpUrl)"
+CLUSTERIP=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
+CLUSTERPORT=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1`
+httpUrl="http://$(CLUSTERIP):$(CLUSTERPORT)"
+echo "HTTP URL = $httpUrl"
 
 #-------------------------------------------------------------------------------
 # Functions
@@ -17,9 +17,9 @@ echo "HTTP URL = ($httpUrl)"
 launchCurlOrProtractor() {
     retryCount=1
     maxRetry=30
-    
-    ip=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
-    port=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
+
+    ip=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
+    port=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)`
     httpUrl="http://$(ip):$(port)"
 
     rep=$(curl -v "$httpUrl")
