@@ -29,6 +29,9 @@ launchCurlOrProtractor() {
         status=$?
     done
 
+    kubectl get service -n jhipster
+    kubectl get pods -n jhipster
+
     if [ "$status" -ne 0 ]; then
         echo "*** [$(date)] Not connected after" $retryCount " retries."
         return 1
@@ -52,8 +55,6 @@ launchCurlOrProtractor() {
         echo "*** e2e tests failed... retryCount =" $retryCount "/" $maxRetry
         sleep 15
     done
-    kubectl get service -n jhipster
-    kubectl get pods -n jhipster
     return $result
 }
 
