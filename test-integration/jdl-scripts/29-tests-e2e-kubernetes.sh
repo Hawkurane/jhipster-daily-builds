@@ -11,8 +11,8 @@ launchCurlOrProtractor() {
 
     kubectl cluster-info
 
-    CLUSTERIP=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
-    CLUSTERPORT=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1`
+    CLUSTERIP=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
+    CLUSTERPORT=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
     httpUrl="http://$(CLUSTERIP):$(CLUSTERPORT)"
 
     rep=$(curl -v "$httpUrl")
