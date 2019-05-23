@@ -13,7 +13,7 @@ launchCurlOrProtractor() {
     kubectl get nodes -o wide
     kubectl get service -n jhipster
     kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-)
+
 
     CLUSTERIP=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
     CLUSTERPORT=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
