@@ -3,14 +3,9 @@
 source $(dirname $0)/00-init-env.sh
 
 #-------------------------------------------------------------------------------
-# Specific for couchbase
+# Connecting to cluster
 #-------------------------------------------------------------------------------
-cd "$JHI_FOLDER_APP"
-if [ -a src/main/docker/couchbase.yml ]; then
-    docker-compose -f src/main/docker/couchbase.yml up -d
-    sleep 20
-    docker ps -a
-fi
+export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 
 ip=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
 port=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
@@ -24,10 +19,10 @@ echo httpUrl
 launchCurlOrProtractor() {
     retryCount=1
     maxRetry=30
-    httpUrl="http://localhost:8080"
-    if [[ "$JHI_APP" == *"micro"* ]]; then
-        httpUrl="http://localhost:8081/management/health"
-    fi
+
+    ip=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
+    port=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
+    httpUrl="http://$(ip):$(port)"
 
     rep=$(curl -v "$httpUrl")
     status=$?
@@ -70,5 +65,5 @@ launchCurlOrProtractor() {
 #-------------------------------------------------------------------------------
 if [ "$JHI_RUN_APP" == 1 ]; then
     # After the script 24 (deploy with docker compose), the app should be already up
-    # launchCurlOrProtractor
+    launchCurlOrProtractor
 fi
