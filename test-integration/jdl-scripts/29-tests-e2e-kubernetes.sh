@@ -3,15 +3,6 @@
 source $(dirname $0)/00-init-env.sh
 
 #-------------------------------------------------------------------------------
-# Connecting to cluster
-#-------------------------------------------------------------------------------
-export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-CLUSTERIP=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
-CLUSTERPORT=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1`
-httpUrl="http://$(CLUSTERIP):$(CLUSTERPORT)"
-echo "HTTP URL = $httpUrl"
-
-#-------------------------------------------------------------------------------
 # Functions
 #-------------------------------------------------------------------------------
 launchCurlOrProtractor() {
@@ -19,7 +10,7 @@ launchCurlOrProtractor() {
     maxRetry=30
 
     ip=`kubectl get nodes -o wide | grep master | awk '{print $6; }'`
-    port=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)`
+    port=`kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1`
     httpUrl="http://$(ip):$(port)"
 
     rep=$(curl -v "$httpUrl")
@@ -62,6 +53,7 @@ launchCurlOrProtractor() {
 # Run the application
 #-------------------------------------------------------------------------------
 if [ "$JHI_RUN_APP" == 1 ]; then
-    # After the script 24 (deploy with docker compose), the app should be already up
+    # After the script 28 (deploy with kubernetes), the app should be already up
+    export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
     launchCurlOrProtractor
 fi
