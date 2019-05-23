@@ -52,6 +52,8 @@ launchCurlOrProtractor() {
         echo "*** e2e tests failed... retryCount =" $retryCount "/" $maxRetry
         sleep 15
     done
+    kubectl get service -n jhipster
+    kubectl get pods -n jhipster
     return $result
 }
 
