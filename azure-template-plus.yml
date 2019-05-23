@@ -98,5 +98,7 @@ steps:
     kubectl cluster-info
     cat $HOME/.kube/kind-config-kind
   displayName: 'LOGS: Kind config'
-# - bash: $(JHI_LOCAL_SCRIPTS)/28-deploy-with-kubernetes.sh
-#   displayName: 'TESTS: Deploying with kubernetes cluster'
+- bash: $(JHI_LOCAL_SCRIPTS)/28-deploy-with-kubernetes.sh
+  displayName: 'TESTS: Deploying with kubernetes cluster'
+- bash: $(JHI_LOCAL_SCRIPTS)/29-tests-e2e-kubernetes.sh
+  displayName: 'TESTS: End-to-End (Kubernetes)'
