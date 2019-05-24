@@ -18,10 +18,10 @@ launchCurlOrProtractor() {
     CLUSTERPORT=$(kubectl get service -n jhipster | grep LoadBalancer | awk '{print $5; }' | cut -d ':' -f2 | cut -d '/' -f1)
     httpUrl="http://$CLUSTERIP:$CLUSTERPORT"
 
-
     rep=$(curl -v "$httpUrl")
     status=$?
     while [ "$status" -ne 0 ] && [ "$retryCount" -le "$maxRetry" ]; do
+        kubectl exec $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql) sudo chmod +r /etc/mysql/conf.d/
         echo "*** [$(date)] Application not reachable yet. Sleep and retry - retryCount =" $retryCount "/" $maxRetry
         retryCount=$((retryCount+1))
         sleep 10
@@ -31,7 +31,7 @@ launchCurlOrProtractor() {
 
     kubectl get service -n jhipster
     kubectl get pods -n jhipster
-    echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+    # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
     kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
 
 
