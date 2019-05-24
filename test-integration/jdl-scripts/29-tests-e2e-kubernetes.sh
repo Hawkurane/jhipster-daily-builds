@@ -22,6 +22,11 @@ launchCurlOrProtractor() {
     status=$?
     while [ "$status" -ne 0 ] && [ "$retryCount" -le "$maxRetry" ]; do
         kubectl exec $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql) sudo chmod +r /etc/mysql/conf.d/
+        kubectl get service -n jhipster
+        kubectl get pods -n jhipster
+        # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+        kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+
         echo "*** [$(date)] Application not reachable yet. Sleep and retry - retryCount =" $retryCount "/" $maxRetry
         retryCount=$((retryCount+1))
         sleep 10
@@ -29,11 +34,7 @@ launchCurlOrProtractor() {
         status=$?
     done
 
-    kubectl get service -n jhipster
-    kubectl get pods -n jhipster
-    # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-
+    
 
     if [ "$status" -ne 0 ]; then
         echo "*** [$(date)] Not connected after" $retryCount " retries."
