@@ -12,7 +12,6 @@ launchCurlOrProtractor() {
     kubectl cluster-info
     kubectl get nodes -o wide
     kubectl get service -n jhipster
-    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
 
 
     CLUSTERIP=$(kubectl get nodes -o wide | grep master | awk '{print $6; }')
@@ -32,6 +31,9 @@ launchCurlOrProtractor() {
 
     kubectl get service -n jhipster
     kubectl get pods -n jhipster
+    echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+
 
     if [ "$status" -ne 0 ]; then
         echo "*** [$(date)] Not connected after" $retryCount " retries."
