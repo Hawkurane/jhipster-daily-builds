@@ -12,8 +12,5 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 # Starting local cluster
 #-------------------------------------------------------------------------------
-kind create cluster
-export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
-
-kubectl cluster-info
+minikube start
 
