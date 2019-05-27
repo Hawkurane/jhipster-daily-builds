@@ -20,5 +20,5 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 # Starting local cluster
 #-------------------------------------------------------------------------------
-minikube start --no-vtx-check
-kubectl cluster-info
+sudo microk8s.start
+microk8s.kubectl cluster-info
