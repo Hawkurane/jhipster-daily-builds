@@ -36,7 +36,10 @@ launchCurlOrProtractor() {
     kubectl get service -n jhipster
     kubectl get pods -n jhipster
     # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+    echo "**********************POD DATABASE***********************************"
+    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep -E "store-mysql|store-mariadb")
+    echo "*************************POD STORE***********************************"
+    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store- | awk '{if (NR==1) print $0}')
 
     if [ "$status" -ne 0 ]; then
         echo "*** [$(date)] Not connected after" $retryCount " retries."
