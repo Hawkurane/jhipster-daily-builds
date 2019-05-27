@@ -64,12 +64,6 @@ steps:
 #----------------------------------------------------------------------
 - bash: $(JHI_LOCAL_SCRIPTS)/10-install-jhipster-daily-builds.sh
   displayName: 'GENERATION: install JHipster'
-
-- bash: $(JHI_LOCAL_SCRIPTS)/26-install-kind.sh
-  displayName: 'TOOLS: install kind'
-- bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
-  displayName: 'TOOLS: start up kind cluster'
-  
 - bash: $(JHI_LOCAL_SCRIPTS)/12-generate-project.sh
   displayName: 'GENERATION: project'
 - bash: $(JHI_LOCAL_SCRIPTS)/13-replace-version-generated-project.sh
