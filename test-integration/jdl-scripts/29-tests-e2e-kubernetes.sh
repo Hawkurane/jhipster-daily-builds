@@ -7,7 +7,7 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 launchCurlOrProtractor() {
     retryCount=1
-    maxRetry=150
+    maxRetry=30
 
     kubectl cluster-info
     kubectl get nodes -o wide
@@ -21,20 +21,18 @@ launchCurlOrProtractor() {
     rep=$(curl -v "$httpUrl")
     status=$?
     while [ "$status" -ne 0 ] && [ "$retryCount" -le "$maxRetry" ]; do
-        kubectl exec $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql) sudo chmod +r /etc/mysql/conf.d/
-        kubectl get service -n jhipster
-        kubectl get pods -n jhipster
-        # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-        kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
-
         echo "*** [$(date)] Application not reachable yet. Sleep and retry - retryCount =" $retryCount "/" $maxRetry
         retryCount=$((retryCount+1))
-        sleep 2
+        sleep 10
         rep=$(curl -v "$httpUrl")
         status=$?
     done
 
-    
+    # kubectl exec $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql) sudo chmod +r /etc/mysql/conf.d/
+    kubectl get service -n jhipster
+    kubectl get pods -n jhipster
+    # echo $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
+    kubectl logs -n jhipster $(kubectl get pods -n jhipster -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep store-mysql)
 
     if [ "$status" -ne 0 ]; then
         echo "*** [$(date)] Not connected after" $retryCount " retries."
