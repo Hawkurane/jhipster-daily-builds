@@ -30,7 +30,7 @@ sudo apt install snapd
 # Testing snap
 #-------------------------------------------------------------------------------
 sudo snap install hello-world
-hello-world
+# hello-world
 
 #-------------------------------------------------------------------------------
 # Installing microk8s
