@@ -7,7 +7,7 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 launchCurlOrProtractor() {
     retryCount=1
-    maxRetry=30
+    maxRetry=60
 
     kubectl cluster-info
     kubectl get nodes -o wide
