@@ -20,5 +20,5 @@ source $(dirname $0)/00-init-env.sh
 #-------------------------------------------------------------------------------
 # Starting local cluster
 #-------------------------------------------------------------------------------
-minikube start
+minikube start --no-vtx-check
 kubectl cluster-info
