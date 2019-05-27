@@ -82,17 +82,17 @@ steps:
 #----------------------------------------------------------------------
 - bash: $(JHI_LOCAL_SCRIPTS)/23-package.sh
   displayName: 'TESTS: packaging'
-# - bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
-#   displayName: 'TESTS: Deploying with docker-compose files'
-# - bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
-#   displayName: 'TESTS: End-to-End (Docker-Compose)'
+- bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
+  displayName: 'TESTS: Deploying with docker-compose files'
+- bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
+  displayName: 'TESTS: End-to-End (Docker-Compose)'
 
   #----------------------------------------------------------------------
 # Install Kind
 #----------------------------------------------------------------------
-- bash: $(JHI_LOCAL_SCRIPTS)/26-install-kind.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/26-install-minikube.sh
   displayName: 'TOOLS: install kind'
-- bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
+- bash: $(JHI_LOCAL_SCRIPTS)/27-start-minikube-cluster.sh
   displayName: 'TOOLS: start up kind cluster'
 - bash: $(JHI_LOCAL_SCRIPTS)/28-deploy-with-kubernetes.sh
   displayName: 'TESTS: Deploying with kubernetes cluster'
