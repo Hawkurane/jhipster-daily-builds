@@ -52,6 +52,14 @@ steps:
   displayName: 'TOOLS: update NPM'
 - script: npm install -g yarn
   displayName: 'TOOLS: install Yarn'
+<<<<<<< HEAD
+=======
+- script: |
+    cd $(Build.SourcesDirectory)/test-integration/jdl-samples
+    npm i
+    npm start
+  displayName: 'TOOLS: generating jdl-samples'
+>>>>>>> origin/jdl_gateway_apps
 - bash: $(JHI_LOCAL_SCRIPTS)/01-display-configuration.sh
   displayName: 'TOOLS: display configuration'
 - bash: $(JHI_LOCAL_SCRIPTS)/03-system.sh
@@ -82,18 +90,18 @@ steps:
 #----------------------------------------------------------------------
 - bash: $(JHI_LOCAL_SCRIPTS)/23-package.sh
   displayName: 'TESTS: packaging'
-# - bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
-#   displayName: 'TESTS: Deploying with docker-compose files'
-# - bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
-#   displayName: 'TESTS: End-to-End (Docker-Compose)'
+- bash: $(JHI_LOCAL_SCRIPTS)/24-deploy-with-docker-compose.sh
+  displayName: 'TESTS: Deploying with docker-compose files'
+- bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
+  displayName: 'TESTS: End-to-End (Docker-Compose)'
 
   #----------------------------------------------------------------------
 # Install Kind
 #----------------------------------------------------------------------
-- bash: $(JHI_LOCAL_SCRIPTS)/26-install-kind.sh
-  displayName: 'TOOLS: install kind'
-- bash: $(JHI_LOCAL_SCRIPTS)/27-start-kind-cluster.sh
-  displayName: 'TOOLS: start up kind cluster'
+- bash: $(JHI_LOCAL_SCRIPTS)/26-install-minikube.sh
+  displayName: 'TOOLS: install minikube'
+- bash: $(JHI_LOCAL_SCRIPTS)/27-start-minikube-cluster.sh
+  displayName: 'TOOLS: start up minikube cluster'
 - bash: $(JHI_LOCAL_SCRIPTS)/28-deploy-with-kubernetes.sh
   displayName: 'TESTS: Deploying with kubernetes cluster'
 - bash: $(JHI_LOCAL_SCRIPTS)/29-tests-e2e-kubernetes.sh
