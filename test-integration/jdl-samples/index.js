@@ -1,7 +1,6 @@
 const ejs = require("ejs");
 const fs = require("fs");
 const path = require("path");
-const chalk = require("chalk");
 // const config = {
 //   serviceDiscoveryType: ["eureka", "consul"],
 //   authenticationType: ["jwt", "session", "oauth2"],
@@ -59,9 +58,8 @@ try {
     });
   });
   console.log(
-    chalk.green(
     `Samples (${config.serviceDiscoveryType.length * config.authenticationType.length * config.prodDatabaseType.length * config.cacheProvider.length} files) generated succesfully.`
-  ));
+  );
   } catch (e) {
   console.error(e);
 }
