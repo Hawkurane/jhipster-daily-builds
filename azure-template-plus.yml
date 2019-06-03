@@ -52,6 +52,11 @@ steps:
   displayName: 'TOOLS: update NPM'
 - script: npm install -g yarn
   displayName: 'TOOLS: install Yarn'
+- script: |
+    cd $(Build.SourcesDirectory)/test-integration/jdl-samples
+    npm i
+    npm start
+  displayName: 'TOOLS: generating jdl-samples'
 - bash: $(JHI_LOCAL_SCRIPTS)/01-display-configuration.sh
   displayName: 'TOOLS: display configuration'
 - bash: $(JHI_LOCAL_SCRIPTS)/03-system.sh

@@ -1,14 +1,30 @@
-
+<% if(authType === 'uaa') { %>
+application {
+ config {
+   baseName uaa,
+   packageName com.jhipster.demo.uaa,
+   serviceDiscoveryType <%= sdType %>,
+   authenticationType uaa,
+   uaaBaseName "uaa",
+   prodDatabaseType <%= proddbType %>,
+   cacheProvider <%= cacheType %>,
+   buildTool maven,
+   serverPort 9999,
+   testFrameworks [gatling, cucumber]
+ }
+}
+<% } %>
 
 application {
  config {
    baseName store,
    applicationType gateway,
    packageName com.jhipster.demo.store,
-   serviceDiscoveryType eureka,
-   authenticationType oauth2,
-   prodDatabaseType mysql,
-   cacheProvider no,
+   serviceDiscoveryType <%= sdType %>,
+   authenticationType <%= authType %>,<% if(authType === 'uaa') { %>
+   uaaBaseName "uaa",<% } %>
+   prodDatabaseType <%= proddbType %>,
+   cacheProvider <%= cacheType %>,
    buildTool maven,
    clientFramework angularX,
    enableSwaggerCodegen true,
@@ -22,9 +38,11 @@ application {
    baseName crm,
    applicationType microservice,
    packageName com.jhipster.demo.crm,
-   serviceDiscoveryType eureka,
-   authenticationType oauth2,
-   
+   serviceDiscoveryType <%= sdType %>,
+   authenticationType <%= authType %>,
+   <% if(authType === 'uaa') { %>
+   uaaBaseName "uaa",
+   <% } %>
    prodDatabaseType postgresql,
    buildTool maven,
    searchEngine elasticsearch,
@@ -122,7 +140,7 @@ deployment {
    appsFolders [store, crm],
    dockerRepositoryName "jeromepham"
    monitoring no,
-   serviceDiscoveryType eureka
+   serviceDiscoveryType <%= sdType %>
 }
 
 // will be created under 'kubernetes' folder
@@ -132,7 +150,7 @@ deployment {
    dockerRepositoryName "jeromepham",
    gatewayType zuul,
    monitoring no,
-   serviceDiscoveryType eureka
+   serviceDiscoveryType <%= sdType %>
    kubernetesNamespace jhipster,
    kubernetesServiceType LoadBalancer,
    istio false
