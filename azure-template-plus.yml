@@ -92,10 +92,10 @@ steps:
 - bash: $(JHI_LOCAL_SCRIPTS)/25-tests-e2e-docker-compose.sh
   displayName: 'TESTS: End-to-End (Docker-Compose)'
 
-  #----------------------------------------------------------------------
-# Install Kind
 #----------------------------------------------------------------------
-# - bash: $(JHI_LOCAL_SCRIPTS)/26-install-minikube.sh
+# Install Minikube
+#----------------------------------------------------------------------
+# - bash: $(JHI_LOCAL_SCRIPTS)/26-install-minikube.ssh
 #   displayName: 'TOOLS: install minikube'
 # - bash: $(JHI_LOCAL_SCRIPTS)/27-start-minikube-cluster.sh
 #   displayName: 'TOOLS: start up minikube cluster'

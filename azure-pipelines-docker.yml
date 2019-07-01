@@ -17,11 +17,17 @@
 # limitations under the License.
 #
 
+schedules:
+- cron: "30 8 * * *"
+  displayName: Docker.Image
+  branches:
+    include:
+    - master
+  always: true
 jobs:
 - job: Test
   pool:
     vmImage: 'Ubuntu 16.04'
-
   steps:
   - bash: |
       docker version
